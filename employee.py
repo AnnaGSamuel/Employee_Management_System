@@ -2,22 +2,22 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+employees = {}
+
 class Employee:
-    existing_ids = set()
+    existing_emp_ids = set()
     
     def __init__(self, employee_id, name, department):
-        if employee_id in Employee.existing_ids:
+        if employee_id in Employee.existing_emp_ids:
             raise ValueError("Employee ID must be unique.")
         
         self.employee_id = employee_id
-        self.name = name
-        self.department = department
-        Employee.existing_ids.add(employee_id)
+        self.employee_name = name
+        self.employee_dept = department
+        Employee.existing_emp_ids.add(employee_id)
     
     def display_employee(self):
-        return f"ID: {self.employee_id}, Name: {self.name}, Department: {self.department}"
-
-employees = {}
+        return f"ID: {self.employee_id}, Name: {self.employee_name}, Department: {self.employee_dept}"
 
 @app.route('/')
 def home():
