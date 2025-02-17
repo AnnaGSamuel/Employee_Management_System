@@ -35,7 +35,7 @@ def add_employee():
         
         employee = Employee(employee_id, name, department)
         employees[employee_id] = employee
-        return f"Employee added: {employee.display_employee()}"
+        return f"Employee added: {employee.display_employee()}<br><br>All Employees:<br>" + "<br>".join(emp.display_employee() for emp in employees.values())
     
     except ValueError as e:
         return str(e)
